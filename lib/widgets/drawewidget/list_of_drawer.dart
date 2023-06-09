@@ -53,7 +53,9 @@ class DrawerList extends StatelessWidget {
         settings(
           title: 'Terms & Conditions',
           icon: Icons.gavel,
-          toNextPage: () {},
+          toNextPage: () {
+
+          },
         ),
         SizedBox(
           height: 7,
@@ -79,7 +81,7 @@ class DrawerList extends StatelessWidget {
                     ],
                   ),
                   content: Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,'),
+                      "AURA is the ultimate music player for those  who love to groove to the rhythm of their favorite tunes .If you are looking for a music player that can handle any genre, any mood, and any occasion, look no further than AURA .AURA is more than a music player. it's your musical companion. Get yours now and feel the beast",style: TextStyle(fontFamily: "KumbhSans"),),
                   actions: [
                     TextButton.icon(
                         onPressed: () {
