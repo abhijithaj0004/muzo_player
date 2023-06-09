@@ -43,13 +43,17 @@ class HomePage extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    username.isEmpty ? 'Guest' : username,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'KumbhSans',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: 100,
+                    child: Text(
+                      username.isEmpty ? 'Guest' : username,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'KumbhSans',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

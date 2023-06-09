@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:muzoplayer/screens/home/main_screen.dart';
+import 'package:muzoplayer/widgets/drawewidget/about_us.dart';
+import 'package:muzoplayer/widgets/drawewidget/privacy_policy.dart';
+import 'package:muzoplayer/widgets/drawewidget/terms_&_condition.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,12 +26,11 @@ class DrawerList extends StatelessWidget {
           height: 7,
         ),
         ListTile(
-          onTap: () async {
-            // final url = 'https://abhijithaj0004.github.io';
-            // if (await canLaunchUrl()) {
-            await launchUrl(
-                Uri.https('abhijithaj0004.github.io', '/Muzo_privacy_policy/'));
-            // }
+          onTap: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const PrivacyPolicy(),
+            ));
           },
           title: Text(
             'Privacy Policy',
@@ -54,7 +57,10 @@ class DrawerList extends StatelessWidget {
           title: 'Terms & Conditions',
           icon: Icons.gavel,
           toNextPage: () {
-
+            Navigator.of(context).pop();
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const TermsAndCondition(),
+            ));
           },
         ),
         SizedBox(
@@ -66,35 +72,7 @@ class DrawerList extends StatelessWidget {
           toNextPage: () {
             showDialog(
               context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Column(
-                    children: [
-                      Icon(
-                        Icons.info,
-                        color: Color.fromARGB(255, 248, 70, 70),
-                      ),
-                      Text(
-                        'MUZO',
-                        style: TextStyle(fontFamily: 'KumbhSans', fontSize: 20),
-                      )
-                    ],
-                  ),
-                  content: Text(
-                      "AURA is the ultimate music player for those  who love to groove to the rhythm of their favorite tunes .If you are looking for a music player that can handle any genre, any mood, and any occasion, look no further than AURA .AURA is more than a music player. it's your musical companion. Get yours now and feel the beast",style: TextStyle(fontFamily: "KumbhSans"),),
-                  actions: [
-                    TextButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                        label: Text('OK'))
-                  ],
-                );
-              },
+              builder: (context) => const AboutUs(),
             );
           },
         )
