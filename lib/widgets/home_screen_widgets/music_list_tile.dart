@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:muzoplayer/functions/normalfunctions/playSong.dart';
@@ -5,6 +7,7 @@ import 'package:muzoplayer/functions/normalfunctions/song_model_to_audio.dart';
 import 'package:muzoplayer/screens/allsongs/allsongs.dart';
 import 'package:muzoplayer/screens/home/homepage.dart';
 import 'package:muzoplayer/widgets/mini_player.dart';
+import 'package:muzoplayer/widgets/songlist.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class MusicListTile extends StatelessWidget {
@@ -14,7 +17,7 @@ class MusicListTile extends StatelessWidget {
   });
   songListEmpty() {
     return const Center(
-      child: Text('No Songs in recent'),
+      child: Text('play Songs'),
     );
   }
 
@@ -28,13 +31,13 @@ class MusicListTile extends StatelessWidget {
             return recentList.value.isEmpty
                 ? songListEmpty()
                 : ListView.builder(
-                    physics:const BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Container(
-                          margin:const EdgeInsets.only(bottom: 20),
+                          margin: const EdgeInsets.only(bottom: 20),
                           height: 90,
                           decoration: BoxDecoration(
-                              gradient:const LinearGradient(colors: [
+                              gradient: const LinearGradient(colors: [
                                 Color.fromARGB(255, 203, 203, 203),
                                 Color.fromARGB(0, 207, 207, 207),
                               ]),
@@ -82,7 +85,7 @@ class MusicListTile extends StatelessWidget {
                                 child: Text(
                                   recentList.value[index].title,
                                   overflow: TextOverflow.ellipsis,
-                                  style:const TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 17,
                                       fontFamily: 'KumbhSans',
                                       fontWeight: FontWeight.bold),
@@ -92,6 +95,31 @@ class MusicListTile extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 10.0),
                                 child: Text(
                                     recentList.value[index].artist.toString()),
+                              ),
+                              trailing: PopupMenuButton(
+                                onSelected: (value) {
+                                  playlistBottomSheet(
+                                      context, recentList.value[index]);
+                                },
+                                icon: Icon(Icons.more_vert),
+                                itemBuilder: (context) {
+                                  return <PopupMenuEntry>[
+                                    PopupMenuItem(
+                                        value: 0,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.playlist_add,
+                                              color: Colors.grey,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text('Add to playlist'),
+                                          ],
+                                        ))
+                                  ];
+                                },
                               ),
                             ),
                           ));

@@ -8,12 +8,7 @@ class PlayList extends StatelessWidget {
   final TextEditingController editController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // getAllPlaylist();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.playlist_add),
-      ),
       body: Stack(children: [
         Container(
           width: MediaQuery.of(context).size.width,

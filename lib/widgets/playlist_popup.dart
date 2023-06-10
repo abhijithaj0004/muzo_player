@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:muzoplayer/functions/dbfunctions/playlist_db.dart';
+import 'package:muzoplayer/model/playlistmodel/playlist_class.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class PlayListPopUp extends StatelessWidget {
@@ -11,7 +12,6 @@ class PlayListPopUp extends StatelessWidget {
   TextEditingController playlistController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -53,6 +53,13 @@ class PlayListPopUp extends StatelessWidget {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Enter PlayListName';
+                              }
+                              value = value.trim();
+                              for (EachPlaylist element
+                                  in playlistNotifier.value) {
+                                if (element.name == value) {
+                                  return 'Name already exist';
+                                }
                               }
                               return null;
                             },
